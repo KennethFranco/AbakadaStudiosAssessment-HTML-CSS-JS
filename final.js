@@ -5,33 +5,40 @@ var totalPrice = 0;
 // addGame data acquiring + data submission into JSON Functionalities
 const addGame = (ev)=>{
     ev.preventDefault();
-    let game = {
-        // Unique ID generated in order to use for the for loops later on
-        id : Date.now(),
-
-        gameTitle: document.getElementById("gameTitle").value,
-        genre: document.getElementById("genre").value,
-        developer: document.getElementById("developer").value,
-        price: document.getElementById("price").value,
-        storeURL: document.getElementById("storeURL").value,
-        coverURL: document.getElementById("coverURL").value,
-        releaseDate: document.getElementById("releaseDate").value,
+    if (document.getElementById("gameTitle").value == "" || document.getElementById("genre").value == "" || document.getElementById("developer").value == "" || document.getElementById("price").value == "" || document.getElementById("storeURL").value == "" || document.getElementById("coverURL").value == "" || document.getElementById("releaseDate").value == ""){
+        alert("Please fill out all the fields.")
+    }
+    else{
+        
+        let game = {
+            // Unique ID generated in order to use for the for loops later on
+            id : Date.now(),
+    
+            gameTitle: document.getElementById("gameTitle").value,
+            genre: document.getElementById("genre").value,
+            developer: document.getElementById("developer").value,
+            price: document.getElementById("price").value,
+            storeURL: document.getElementById("storeURL").value,
+            coverURL: document.getElementById("coverURL").value,
+            releaseDate: document.getElementById("releaseDate").value,
+        }
+    
+        games.push(game);
+        
+        document.getElementById("gameTitle").value = ""
+        document.getElementById("genre").value = ""
+        document.getElementById("developer").value = ""
+        document.getElementById("price").value = ""
+        document.getElementById("storeURL").value = ""
+        document.getElementById("coverURL").value = ""
+        document.getElementById("releaseDate").value = ""
+        buildTable(games);
+    
+        // Put into console for checking purposes
+        console.warn('added' , {games} );
+        $('#staticBackdrop').modal('hide');
     }
 
-    games.push(game);
-    
-    document.getElementById("gameTitle").value = ""
-    document.getElementById("genre").value = ""
-    document.getElementById("developer").value = ""
-    document.getElementById("price").value = ""
-    document.getElementById("storeURL").value = ""
-    document.getElementById("coverURL").value = ""
-    document.getElementById("releaseDate").value = ""
-    buildTable(games);
-
-    // Put into console for checking purposes
-    console.warn('added' , {games} );
-    $('#staticBackdrop').modal('hide');
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -40,34 +47,40 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 // editGame data acquiring + data submission into JSON functionalities, also makes respective modal appear
 const editGame = (ev)=>{
-    var table = document.getElementById("mainTable");
     ev.preventDefault();
-    table.innerHTML = ""
-    
-    id = document.getElementById("current").innerHTML;
-    // For loops used often to iterate throughout the entire JSON array
-    for (var i= 0; i < games.length; i++){
-        if(games[i].id == id){
-            games[i].id = id
-            games[i].gameTitle = document.getElementById("editGameTitle").value;
-            games[i].genre = document.getElementById("editGenre").value; 
-            games[i].developer = document.getElementById("editDeveloper").value;
-            games[i].price = document.getElementById("editPrice").value; 
-            games[i].storeURL =  document.getElementById("editStoreURL").value;
-            games[i].coverURL = document.getElementById("editCoverURL").value;
-            games[i].releaseDate = document.getElementById("editReleaseDate").value;
+    var table = document.getElementById("mainTable");
+
+    if (document.getElementById("editGameTitle").value == "" || document.getElementById("editGenre").value == "" || document.getElementById("editDeveloper").value == "" || document.getElementById("editPrice").value == "" || document.getElementById("editStoreURL").value == "" || document.getElementById("editCoverURL").value == "" || document.getElementById("editReleaseDate").value == ""){
+        alert("Please fill out all the fields.")
+    }
+    else{
+        table.innerHTML = ""
+        id = document.getElementById("current").innerHTML;
+        // For loops used often to iterate throughout the entire JSON array
+        for (var i= 0; i < games.length; i++){
+            if(games[i].id == id){
+                games[i].id = id
+                games[i].gameTitle = document.getElementById("editGameTitle").value;
+                games[i].genre = document.getElementById("editGenre").value; 
+                games[i].developer = document.getElementById("editDeveloper").value;
+                games[i].price = document.getElementById("editPrice").value; 
+                games[i].storeURL =  document.getElementById("editStoreURL").value;
+                games[i].coverURL = document.getElementById("editCoverURL").value;
+                games[i].releaseDate = document.getElementById("editReleaseDate").value;
+            }
         }
+    
+        document.getElementById("editGameTitle").value = ""
+        document.getElementById("editGenre").value = ""
+        document.getElementById("editDeveloper").value = ""
+        document.getElementById("editPrice").value = ""
+        document.getElementById("editStoreURL").value = ""
+        document.getElementById("editCoverURL").value = ""
+        document.getElementById("editReleaseDate").value = ""
+        buildTable(games);
+        $('#exampleModal').modal('hide');
     }
 
-    document.getElementById("editGameTitle").value = ""
-    document.getElementById("editGenre").value = ""
-    document.getElementById("editDeveloper").value = ""
-    document.getElementById("editPrice").value = ""
-    document.getElementById("editStoreURL").value = ""
-    document.getElementById("editCoverURL").value = ""
-    document.getElementById("editReleaseDate").value = ""
-    buildTable(games);
-    $('#exampleModal').modal('hide');
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -139,13 +152,18 @@ function deleteButton(){
     id = document.getElementById("current").innerHTML;
 
     // For loop also used here to find the Game with this specific ID and delete it from the JSON array
-    for (var i= 0; i < games.length; i++){
-        if(games[i].id == id){
-            games.splice(i, 1);
-            break
+    var checker = confirm("Are you sure?")
+
+    if (checker==true){
+        for (var i= 0; i < games.length; i++){
+            if(games[i].id == id){
+                games.splice(i, 1);
+                break
+            }
         }
+        buildTable(games)
     }
-    buildTable(games)
+
 }
 
 // calclualteTotalPrice function in order to track the total price of all the Games 
