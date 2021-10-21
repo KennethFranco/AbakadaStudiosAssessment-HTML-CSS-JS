@@ -23,6 +23,8 @@
     width: 50%;
     height: 100%;
     align-items: center;
+    background-color: #25bfe2;
+    color:white;
 }
 
 td:hover > .editButton{
@@ -44,14 +46,21 @@ td:hover > .editButton{
 
 #totalPrice{
     text-align: center;
+    color: #ddd034;
 }
 
 .inputBox{
     width: 100%;
 }
 
+.addButton{
+    background-color: #25bfe2;
+    color:white;
+}
 #submitButton{
     width: 100%;
+    background-color: #25bfe2;
+    color:white;
 }
 
 .tableDataGameTitle{
