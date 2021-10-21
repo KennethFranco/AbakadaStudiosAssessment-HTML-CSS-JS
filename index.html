@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abakada Studios Programming Assessment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class = "title">
+        <h1>Steam Games Wishlist</h1>
+    </div>
+    
+    <!-- Hidden Modals, set only to appear when user clicks Add Button or Edit Button -->
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editing Game</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <h1 id= "current"></h1>
+                    <div>
+                        <label for="gameTitle">Game Title</label>
+                        <input class = "inputBox" type="text" name = "gameTitle" id = "editGameTitle"/>
+                    </div>
+                    <div>
+                        <label for="genre">Genre</label>
+                        <input class = "inputBox" type="text" name = "genre" id = "editGenre">
+                    </div>
+                    <div>
+                        <label for="developer">Developer</label>
+                        <input class = "inputBox" type="text" name = "developer" id = "editDeveloper">
+                    </div>
+                    <div>
+                        <label for="price">Price in Philippine Peso</label>
+                        <input class = "inputBox" type="number" name = "price" min= "1" id = "editPrice">
+                    </div>
+                    <div>
+                        <label for="storeURL">Store Link URL</label>
+                        <input class = "inputBox" type="text" name = "storeURL" id = "editStoreURL">
+                    </div>
+                    <div>
+                        <label for="coverURL">Cover Image URL</label>
+                        <input class = "inputBox" type="text" name = "coverURL" id = "editCoverURL">
+                    </div>
+                    <div>
+                        <label for="releaseDate">Release Date</label>
+                        <input class = "inputBox" type="date" name = "releaseDate" id = "editReleaseDate">
+                    </div>
+
+                    <br>
+                    <div>
+                        <button  id="submitEditsButton">Confirm updates</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id = "deleteButton" type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteButton()">Delete</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Add Game Form</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div>
+                    <label for="gameTitle">Game Title:</label>
+                    <input class = "inputBox" type="text" name = "gameTitle" id = "gameTitle" required>
+                </div>
+                <div>
+                    <label for="genre">Genre:</label>
+                    <input class = "inputBox" type="text" name = "genre" id = "genre" required>
+                </div>
+                <div>
+                    <label for="developer">Developer:</label>
+                    <input class = "inputBox" type="text" name = "developer" id = "developer" required>
+                </div>
+                <div>
+                    <label for="price">Price in Philippine Peso:</label>
+                    <input class = "inputBox" type="number" name = "price" min= "1" id = "price" required>
+                </div>
+                <div>
+                    <label for="storeURL">Store Link URL:</label>
+                    <input class = "inputBox" type="text" name = "storeURL" id = "storeURL" required>
+                </div>
+                <div>
+                    <label for="coverURL">Cover Image URL:</label>
+                    <input class = "inputBox" type="text" name = "coverURL" id = "coverURL" required>
+                </div>
+                <div>
+                    <label for="releaseDate">Release Date:</label>
+                    <input class = "inputBox" type="date" name = "releaseDate" id = "releaseDate" required>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" id = "submitButton">Submit</button>
+                </div>
+            </form>
+        </div>
+        </div>
+        </div>  
+    </div>
+
+    <!-- Add Game Section -->
+    <div class = "addGameSection">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Add Game
+        </button>
+    </div>
+    <br>
+
+    <!-- Main Table -->
+    <table class = "table">
+        <thead>
+            <h1 class = "tableHeader">Games</h1>
+        </thead>
+
+        <tbody id="mainTable">
+
+        </tbody>
+    </table>
+
+
+    <!-- Total Price -->
+    <h2 id = "totalPrice">Total Price: PHP 0</h2>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="final.js"></script>
+</body>
+</html>

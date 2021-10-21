@@ -1,0 +1,76 @@
+.title{
+    text-align:center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #25bfe2;
+    color:white;
+    
+}
+
+.addGameSection{
+    margin:auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.addGameSection > button{
+    width: 35%;
+}
+
+#editButton{
+    visibility: hidden;
+    margin-top: 65px;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+}
+
+td:hover > .editButton{
+    display: inline-block;
+}
+
+.addGameSection > button{
+    margin:auto;
+    text-align: center;
+}
+
+.table{
+    text-align: left;
+}
+
+.tableHeader{
+    text-align: center;
+}
+
+#totalPrice{
+    text-align: center;
+}
+
+.inputBox{
+    width: 100%;
+}
+
+#submitButton{
+    width: 100%;
+}
+
+.tableDataGameTitle{
+    color: #39bcd8;
+}
+
+.tableDataPrice{
+    color: #ddd034;
+}
+
+.tableOtherData{
+    color: #b2b4b6;
+}
+
+.tableImage{
+    width: 200x;
+    height: 200px;
+}
+
+tr:hover td #editButton {
+    visibility: visible;
+}
