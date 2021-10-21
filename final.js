@@ -8,6 +8,9 @@ const addGame = (ev)=>{
     if (document.getElementById("gameTitle").value == "" || document.getElementById("genre").value == "" || document.getElementById("developer").value == "" || document.getElementById("price").value == "" || document.getElementById("storeURL").value == "" || document.getElementById("coverURL").value == "" || document.getElementById("releaseDate").value == ""){
         alert("Please fill out all the fields.")
     }
+    else if(document.getElementById("price").value <= 0){
+        alert("Please enter a Price more than 0 PHP.")
+    }
     else{
         
         let game = {
@@ -52,6 +55,9 @@ const editGame = (ev)=>{
 
     if (document.getElementById("editGameTitle").value == "" || document.getElementById("editGenre").value == "" || document.getElementById("editDeveloper").value == "" || document.getElementById("editPrice").value == "" || document.getElementById("editStoreURL").value == "" || document.getElementById("editCoverURL").value == "" || document.getElementById("editReleaseDate").value == ""){
         alert("Please fill out all the fields.")
+    }
+    else if(document.getElementById("editPrice").value <= 0){
+        alert("Please enter a Price more than 0 PHP.")
     }
     else{
         table.innerHTML = ""
