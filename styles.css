@@ -63,6 +63,12 @@ td:hover > .editButton{
     color:white;
 }
 
+#submitEditsButton{
+    width: 100%;
+    background-color: #25bfe2;
+    color:white;
+}
+
 .tableDataGameTitle{
     color: #39bcd8;
 }

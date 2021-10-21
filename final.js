@@ -19,7 +19,14 @@ const addGame = (ev)=>{
     }
 
     games.push(game);
-    document.forms[0].reset();
+    
+    document.getElementById("gameTitle").value = ""
+    document.getElementById("genre").value = ""
+    document.getElementById("developer").value = ""
+    document.getElementById("price").value = ""
+    document.getElementById("storeURL").value = ""
+    document.getElementById("coverURL").value = ""
+    document.getElementById("releaseDate").value = ""
     buildTable(games);
 
     // Put into console for checking purposes
@@ -51,10 +58,14 @@ const editGame = (ev)=>{
             games[i].releaseDate = document.getElementById("editReleaseDate").value;
         }
     }
-    
-    console.log(games);
-    console.log("Lod");
-    document.forms[0].reset();
+
+    document.getElementById("editGameTitle").value = ""
+    document.getElementById("editGenre").value = ""
+    document.getElementById("editDeveloper").value = ""
+    document.getElementById("editPrice").value = ""
+    document.getElementById("editStoreURL").value = ""
+    document.getElementById("editCoverURL").value = ""
+    document.getElementById("editReleaseDate").value = ""
     buildTable(games);
     $('#exampleModal').modal('hide');
 }
